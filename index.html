@@ -100,8 +100,120 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
+    function Course(name, code, term) {
+      this.name = name;
+      this.code = code;
+      this.term = term;
+    }
+
+    let cse110 = new Course("Software Engineering", 110);
+    let cse120 = new Course("Operating System", 120);
+    let cse124 = new Course("Networked Services", 124);
+
     // Start your code here
     // You may move this JS to another file if you wish
+    for (let i = 0; i < errorBtns.length; i++) {
+      errorBtns[i].addEventListener("click", () => {
+        switch(errorBtns[i].innerHTML) {
+          case "Console Log":
+            console.log("Console Log Demo");
+            break;
+          case "Console Error":
+            console.error("Console Error");
+            break;
+          case "Console Count": 
+            console.count("Count Button");
+            break;
+          case "Console Warn":
+            console.warn("Console Warn Button");
+            break;
+          case "Console Assert":
+            console.assert(4*2 == 6, {errorMsg: "4 * 2 is not 6"});
+            break;
+          case "Console Clear": 
+            console.clear("Console Clear");
+            break;
+          case "Console Dir": 
+            console.dir(errorBtns[i]);
+            break;
+          case "Console dirxml":
+            console.dirxml(errorBtns[i]);
+            break;
+          case "Console Group Start":
+            console.group("Console Group Start");
+            break;
+          case "Console Group End": 
+            console.groupEnd();
+            break;
+          case "Console Table": 
+            console.table([cse110, cse120, cse124]);
+            break;
+          case "Start Timer":
+            console.time();
+            break;
+          case "End Timer":
+            console.timeEnd();
+            break;
+          case "Console Trace": 
+            function cse110_fa21() {
+              function cse110_fa21_labs() {
+                function cse110_fa21_labs_week8() {
+                  function cse110_fa21_labs_week8_lab9() {
+                    console.trace();
+                  }
+                  cse110_fa21_labs_week8_lab9();
+                }
+                cse110_fa21_labs_week8();
+              }
+              cse110_fa21_labs();
+            }
+            cse110_fa21();
+            break;
+          case "Trigger a Global Error":
+            console.log(SocialLife);
+        }
+      });
+    }
+
+    try {
+      let courseList = [];
+      courseList.push(cse110);
+      courseList.push(cse120);
+      courseList.push(cse124);
+      console.group("Reading course list . . .");
+      for (let i = 0; i <= courseList.length; i++) {
+        console.log(courseList[i].name);
+      }
+    } catch(error) {
+      console.log("An error has occured when reading course list!");
+    } finally {
+      console.groupEnd();
+      console.log("Finished reading course list");
+    }
+
+    class MeaningOfLife extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "MeaningOfLifeError";
+      }
+    }
+
+    function Calculus(courseCode) {
+      this.courseCode = courseCode;
+    }
+
+    try {
+      let course = new Calculus("20E");
+      if (course.courseCode === "20E") {
+        throw new MeaningOfLife("Good luck");
+      }
+    } catch(error) {
+      console.warn("A MeaningOfLife error has occured: ", error.message, "in 20E!");
+    }
+
+    window.addEventListener("error", (error) => {
+      console.log("A fatal error has occurred...");
+    })
   </script>
 </body>
 
