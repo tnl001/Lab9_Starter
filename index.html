@@ -191,7 +191,7 @@
       console.log("Finished reading course list");
     }
 
-    class MeaningOfLife extends Error {
+    class MeaningOfLifeError extends Error {
       constructor(message) {
         super(message);
         this.name = "MeaningOfLifeError";
@@ -205,7 +205,7 @@
     try {
       let course = new Calculus("20E");
       if (course.courseCode === "20E") {
-        throw new MeaningOfLife("Good luck");
+        throw new MeaningOfLifeError("Good luck");
       }
     } catch(error) {
       console.warn("A MeaningOfLife error has occured: ", error.message, "in 20E!");
